@@ -13,4 +13,4 @@ This is my repo for **STATS 220**
     3. The Sixth Sense
 * I also really enjoy video games and one that im playing at the moment is Monster Hunter Wilds. You can find out more about the game at [this link](https://www.monsterhunter.com/wilds/en-us/)
 
-Here is a GIF that captures how I feel after having to hunt **13** Gore Magala's in monster hunter to get the materials i needed ![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjYzdHgxdDN1OHo5NXpma2doNWR3b2UyMWYwaGRmbnM1dXUzZ2FndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JwwYTeuOHhEB2/giphy.gif)
+Here is a GIF that captures how I feel after having to hunt **13** Gore Magala's in monster hunter to get the materials i needed![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjYzdHgxdDN1OHo5NXpma2doNWR3b2UyMWYwaGRmbnM1dXUzZ2FndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JwwYTeuOHhEB2/giphy.gif)
