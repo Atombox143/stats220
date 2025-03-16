@@ -7,6 +7,8 @@ This is my repo for **STATS 220**
 * My name is *Aidan Whiteford* and I'm currently undertaking a degree in **Pharmacology**
 * I am taking **STATS 220** because I want to expand my data analysis and management skills and also learn some coding
 * I am interested in learning about how data is analysed and transformed into a presentable format that anyone can understand and the coding needed to be able to do these things
+
+### Some of my hobbies:
 * I love watching movies and my top three movies are:
     1. Shawshack Redemption
     2. Mad Max Fury Road
