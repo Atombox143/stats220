@@ -1,0 +1,84 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+
+```
+
+## What type of Youtube videos did I watch and did I finish watching them?
+
+```{r}
+library(tidyverse)
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtdlPIW3Rzdq5h7ztubvq_i84p20pmnhkUi_p10nMorNEo-NyOdWMdQQGk7U0szyBkVwEs7T03Fs63/pub?gid=1198682463&single=true&output=csv"
+
+logged_data = read.csv(url)
+
+latest_data = logged_data %>%
+  rename(video_genre = 2,
+         video_views = 3,
+         video_date = 4,
+         video_finish = 5,
+         video_length =6)
+
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = video_genre), fill = "#135cf0") +
+  labs(title = "Genre of videos I watched",
+       x = "Video genre",
+       y = "Videos watched")
+
+genre = table(latest_data$video_genre)
+
+genre_count = latest_data %>% 
+  count(video_genre)
+
+paste("Out of the",
+      length(latest_data$video_genre),
+      "videos I watched my most viewed genre is", 
+      names(which.max(genre)),
+      "with",
+      genre_count$n[6],
+      "videos and my least viewed is",
+      names(which.min(genre)),
+      "with",
+      genre_count$n[2],
+      "video")
+
+```
+
+```{r}
+latest_data %>%
+  ggplot() +
+    geom_bar(aes(x = video_finish, fill = video_genre)) +
+    labs(title = "How many video did i finish watching",
+      y = "Videos watched",
+      x= "Did I finish the video?")
+
+finish_count = latest_data %>% 
+  count(video_finish)
+
+unfinished = latest_data %>%
+  filter(video_finish == "No") %>%
+  count(video_genre)
+
+paste(
+  "Out of the",
+  length(latest_data$video_finish),
+  "videos I watched, I only finshed watching",
+  finish_count$n[2],
+  "videos and didn't finish",
+  finish_count$n[1],
+  "videos. Of those",
+  finish_count$n[1],
+  "videos I didn't finish",
+  unfinished$n[4],
+  "Gaming videos despite being my most watched genre"
+)
+```
