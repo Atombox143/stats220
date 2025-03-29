@@ -71,6 +71,7 @@ paste("The genre that had the most amount of view time was Gaming with",
       "minutes watched and the genre with the least amount of view time was Animation with",
       min(genre_length$total_length),
       "minutes watched.")
+
 paste("Despite Eductional having the least amount of videos watched, it has the second least amount of view time with",
       genre_length$total_length[4],
       "minutes, which is",
