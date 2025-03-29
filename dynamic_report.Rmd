@@ -1,1 +1,82 @@
+---
+title: My dynamic report
+output: html_fragment
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+library(tidyverse)
+csv_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgTGp_lmVLKWwx--y2ZnzLnwciqDjc7kHYKtcshsv29iUe90jVXAJg2Rxw74PLeRDzQlGP-aQNkUcO/pub?output=csv"
+
+logged_data = read.csv(csv_url)
+
+names(logged_data)
+
+latest_data = logged_data %>%
+  rename(genre = 2,
+         length = 3,
+         title= 4,
+         finish = 5)
+```
+
+```{css}
+
+```
+
+## What was my most watched genre of Youtube video and how much did I watch?
+
+```{r}
+#summary values used
+genre_count = latest_data %>%
+  count(genre)
+#max(genre_count$n)
+#min(genre_count$n)
+
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = genre), fill = "steelblue") +
+  labs(title = "What genre of videos did I watch",
+       x= "Genre",
+       y = "Videos watched")
+
+paste("Of the ",
+      sum(genre_count$n),
+      "videos I watched, the most viewed genre was Gaming with",
+      max(genre_count$n),
+      "videos watched and the leasted viewed genre was Educational with",
+      min(genre_count$n),
+      "videos watched."
+      )
+```
+
+```{r}
+#summary values used
+genre_length = latest_data %>%
+  group_by(genre) %>%
+  summarise(total_length = sum(length))
+#max(genre_length$total_length)
+#min(genre_length$total_length)
+
+
+ggplot(genre_length, 
+       aes(x = reorder(genre, -total_length), 
+           y = total_length, fill = genre)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Total View Time by Genre", 
+       x = "Genre", 
+       y = "Total View Time (Minutes)") 
+
+paste("The genre that had the most amount of view time was Gaming with",
+      max(genre_length$total_length),
+      "minutes watched and the genre with the least amount of view time was Animation with",
+      min(genre_length$total_length),
+      "minutes watched.", 
+      "Despite Eductional having the least amount of videos watched, it has the second least amount of view time with",
+      genre_length$total_length[4],
+      "minutes, which is",
+      (genre_length$total_length[4] -  min(genre_length$total_length)),
+      " minutes more watch time than Animation which had 3 videos"
+      
+      )
+
+```
