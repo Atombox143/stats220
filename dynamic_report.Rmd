@@ -68,7 +68,8 @@ ggplot(genre_length,
   geom_bar(stat = "identity") +
   labs(title = "Total View Time by Genre", 
        x = "Genre", 
-       y = "Total View Time (Minutes)") 
+       y = "Total View Time (Minutes)")  +
+  theme(legend.position = "none")
 
 paste("The genre that has the most amount of total view time is",
       genre_length[which.max(genre_length$total_length),1],
