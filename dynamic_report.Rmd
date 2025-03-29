@@ -10,8 +10,6 @@ csv_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgTGp_lmVLKWwx--y2Zn
 
 logged_data = read.csv(csv_url)
 
-names(logged_data)
-
 latest_data = logged_data %>%
   rename(genre = 2,
          length = 3,
@@ -32,6 +30,8 @@ genre_count = latest_data %>%
 #max(genre_count$n)
 #min(genre_count$n)
 
+
+
 latest_data %>%
   ggplot() +
   geom_bar(aes(x = genre), fill = "steelblue") +
@@ -41,9 +41,13 @@ latest_data %>%
 
 paste("Of the ",
       sum(genre_count$n),
-      "videos I watched, the most viewed genre was Gaming with",
+      "videos I watched, the most viewed genre was",
+      genre_count[which.max(genre_count$n), 1],
+      "with",
       max(genre_count$n),
-      "videos watched and the leasted viewed genre was Educational with",
+      "videos watched and the leasted viewed genre was",
+      genre_count[which.min(genre_count$n), 1],
+      "with",
       min(genre_count$n),
       "videos watched."
       )
@@ -66,17 +70,15 @@ ggplot(genre_length,
        x = "Genre", 
        y = "Total View Time (Minutes)") 
 
-paste("The genre that had the most amount of view time was Gaming with",
+paste("The genre that has the most amount of total view time is",
+      genre_length[which.max(genre_length$total_length),1],
+      "with",
       max(genre_length$total_length),
-      "minutes watched and the genre with the least amount of view time was Animation with",
+      "minutes watched and the genre with the least amount of total view time is",
+      genre_length[which.min(genre_length$total_length),1], 
+      "with",
       min(genre_length$total_length),
-      "minutes watched.")
-
-paste("Despite Eductional having the least amount of videos watched, it has the second least amount of view time with",
-      genre_length$total_length[4],
-      "minutes, which is",
-      (genre_length$total_length[4] -  min(genre_length$total_length)),
-      " minutes more watch time than Animation which had 3 videos"
-      )
+      "minutes watched.") 
+      
 
 ```
